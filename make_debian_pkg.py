@@ -62,7 +62,7 @@ def create_deb_package():
     run_command(['meson', 'install', '-C build'])
     # Make debian package folder
     shutil.copytree(os.path.join(temp_dir, 'include/pistache'), os.path.join(stage_dir, 'usr/local/include/pistache'))
-    src_lib_path = os.path.join(temp_dir, 'lib', platform.machine(), '-linux-gnu')
+    src_lib_path = os.path.join(temp_dir, 'lib', platform.machine() + '-linux-gnu')
     dst_lib_path = os.path.join(stage_dir, 'usr/local/lib')
     for item in os.listdir(src_lib_path):
       s = os.path.join(src_lib_path, item)
