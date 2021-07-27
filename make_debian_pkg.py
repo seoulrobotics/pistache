@@ -52,10 +52,12 @@ def create_deb_package():
     # Build
     run_command(['meson', 'setup', 'build',
      '--buildtype=release', 
+     '-Ddefault_library=both',
      '-DPISTACHE_BUILD_EXAMPLES=false',
      '-DPISTACHE_BUILD_TESTS=false',
      '-DPISTACHE_BUILD_DOCS=false',
      '-DPISTACHE_USE_SSL=True',
+     '-Db_staticpic=True',
      f'--prefix={temp_dir}'
      ])
     run_command(['meson', 'compile', '-C build'])
