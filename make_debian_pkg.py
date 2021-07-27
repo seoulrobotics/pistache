@@ -55,12 +55,13 @@ def create_deb_package():
      '-DPISTACHE_BUILD_EXAMPLES=false',
      '-DPISTACHE_BUILD_TESTS=false',
      '-DPISTACHE_BUILD_DOCS=false',
+     '-DPISTACHE_USE_SSL=True',
      f'--prefix={temp_dir}'
      ])
     run_command(['meson', 'compile', '-C build'])
     run_command(['meson', 'install', '-C build'])
     # Make debian package folder
-    shutil.copytree(os.path.join(temp_dir, 'include'), os.path.join(stage_dir, 'usr/local/include/pistache'))
+    shutil.copytree(os.path.join(temp_dir, 'include/pistache'), os.path.join(stage_dir, 'usr/local/include/pistache'))
     for item in os.listdir(os.path.join(temp_dir, 'lib/x86_64-linux-gnu')):
       s = os.path.join(os.path.join(temp_dir, 'lib/x86_64-linux-gnu'), item)
       d = os.path.join(os.path.join(stage_dir, 'usr/local/lib'), item)
